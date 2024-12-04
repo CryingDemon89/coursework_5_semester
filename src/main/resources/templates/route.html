@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Ж/Д вокзал</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: rgba(39, 63, 112);
+    }
+    h1, h4, h5, th, tr, td, thead, tbody {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<nav class="navbar navbar-expand-lg navbar-dark justify-content-between" style="background-color: rgba(9,11,42,0.80)">
+  </ul>
+  <div class="container-fluid">
+    <a class="navbar-brand" th:href="@{/admin}">Ж/Д Вокзал</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin}">Расписание</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin_trains}">Поезда</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/all_routes}">Рейсы</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/users}">Пользователи</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/logout}">Выход</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="wrapper" style="max-width: 1200px; margin: 0 auto">
+  <br>
+  <blockquote class="blockquote text-center"><h1>Рейс</h1></blockquote>
+
+  <table id="1" class="table table-striped  table-hover">
+    <thead>
+    <tr>
+      <th scope="col" onclick="sortTable(0)" style="cursor: pointer">ID</th>
+      <th scope="col" onclick="sortTable(1)" style="cursor: pointer">ID рейса</th>
+      <th scope="col">Станция</th>
+      <th scope="col">Прибытие</th>
+      <th scope="col">Стоянка</th>
+      <th scope="col">Отправление</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="route: ${listRoute}">
+      <th scope="row" class="text-white" th:text="${route.id}">ID отсутсвует</th>
+      <th scope="row" class="text-white " th:text="${route.scheduleid}">ID рейса отсутствует</th>
+      <th scope="row" class="text-white" th:text="${route.station}">Станция отсутствует</th>
+      <th scope="row" class="text-white datetime" th:text="${route.arr_time}">Прибытие отсутствует</th>
+      <th scope="row" class="text-white" th:text="${route.stop}">Стоянка отсутствует</th>
+      <th scope="row" class="text-white datetime" th:text="${route.dep_time}">Отправление отсутствует</th>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Ж/Д вокзал</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: rgba(39, 63, 112);
+    }
+    h1, h4, h5, th, tr, td, thead, tbody {
+      color: white;
+    }
+
+  </style>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark justify-content-between" style="background-color: rgba(9,11,42,0.80)">
+  </ul>
+  <div class="container-fluid">
+    <a class="navbar-brand" th:href="@{/admin}">Ж/Д Вокзал</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin}">Расписание</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/admin_trains}">Поезда</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/all_routes}">Рейсы</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/users}">Пользователи</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/logout}">Выход</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <h1> Зарегистрированные пользователи </h1>
+  </div>
+  <table class="table table-bordered table-hover">
+    <thead class="table">
+    <tr>
+      <th>Имя</th>
+      <th>Фамилия</th>
+      <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user: ${users}">
+      <td th:text="${user.firstName}"></td>
+      <td th:text="${user.lastName}"></td>
+      <td th:text="${user.email}"></td>
+    </tr>
+    </tbody>
+  </table>
+  <blockquote class="blockquote text-center">
+  <a th:href="@{'/register'}"><button type="button" class="btn btn-info">Зарегистрировать нового пользователя</button></a>
+  </blockquote>
+</div>
+</body>
+</html>
